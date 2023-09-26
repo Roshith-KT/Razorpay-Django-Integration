@@ -1,0 +1,32 @@
+@media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
+    }
+
+
+body{
+    margin: 0;
+    overflow: hidden;
+}
+
+.container{
+    background: #b2d7e9;
+    height: 100vh;
+    width: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    background: #133c3e;
+    height: 400px;
+    width: 400px;
+    color:antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+
+}

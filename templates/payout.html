@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <div class="payout">
+          <h3>Make Payment</h3>
+          <form method="post">
+            {% csrf_token %}
+          <button id="rzp-button1" type="submit" >Pay</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!--Razor pay Integration rzp_test_7rb4FJ7ewblJQ7-->
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+
+    <script>
+      var options = {
+          "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
+          "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "Acme Corp", //your business name
+          "description": "Test Transaction",
+          "image": "data:image/png;base64,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",
+          "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "handler": function (response){
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature)
+          },
+          "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+              "name": "{{name}}", //your customer's name
+              "email": "gaurav.kumar@example.com", 
+              "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+          },
+          "notes": {
+              "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+              "color": "#012652"
+          }
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.on('payment.failed', function (response){
+              alert(response.error.code);
+              alert(response.error.description);
+              alert(response.error.source);
+              alert(response.error.step);
+              alert(response.error.reason);
+              alert(response.error.metadata.order_id);
+              alert(response.error.metadata.payment_id);
+      });
+      document.getElementById('rzp-button1').onclick = function(e){
+          rzp1.open();
+          e.preventDefault();
+      }
+      </script>
+
+  </body>
+</html>
